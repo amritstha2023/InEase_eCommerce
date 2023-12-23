@@ -130,7 +130,6 @@ const Header = () => {
                     <NavLink
                       to="/login"
                       className="nav-link"
-                      activeClassName="active"
                     >
                       <span style={{ color: "dark" }}>Login</span>
                     </NavLink>
@@ -153,7 +152,6 @@ const Header = () => {
                         <NavLink
                           to={`/${auth?.user?.role === 1 ? "admin" : "user"}`}
                           className="dropdown-item"
-                          activeClassName="active"
                         >
                           Dashboard
                         </NavLink>

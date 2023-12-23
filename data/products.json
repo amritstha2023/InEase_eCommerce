@@ -1,0 +1,43 @@
+[
+    {
+      "name": "Smartphone",
+      "slug": "smartphone",
+      "description": "A high-end smartphone",
+      "price": 999.99,
+      "quantity": 10,
+      "shipping": true
+    },
+    {
+      "name": "Laptop",
+      "slug": "laptop",
+      "description": "Powerful laptop for productivity",
+      "price": 1499.99,
+      "quantity": 5,
+      "shipping": true
+    },
+    {
+      "name": "T-shirt",
+      "slug": "t-shirt",
+      "description": "Comfortable cotton T-shirt",
+      "price": 19.99,
+      "quantity": 50,
+      "shipping": true
+    },
+    {
+      "name": "Cookware Set",
+      "slug": "cookware-set",
+      "description": "Premium cookware set for your kitchen",
+      "price": 199.99,
+      "quantity": 8,
+      "shipping": true
+    },
+    {
+      "name": "Running Shoes",
+      "slug": "running-shoes",
+      "description": "High-performance running shoes",
+      "price": 79.99,
+      "quantity": 20,
+      "shipping": true
+    }
+  ]
+  

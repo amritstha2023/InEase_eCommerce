@@ -141,17 +141,7 @@ const HomePage = () => {
               ))}
             </div>
 
-            {/* filter by price */}
-            {/* <h4 className="title title1 text-dark">Filter By Price</h4>
-            <div className="items">
-              <Radio.Group onChange={(e) => setRadio(e.target.value)}>
-                {Prices?.map((p) => (
-                  <div className="tt" key={p._id}>
-                    <Radio value={p.array}>{p.name}</Radio>
-                  </div>
-                ))}
-              </Radio.Group>
-            </div> */}
+            
             <div className="bhead">
               <button className="button" onClick={() => window.location.reload()}>
                 RESET FILTERS
@@ -171,7 +161,6 @@ const HomePage = () => {
                     <img
                       src={`http://localhost:8080/api/v1/product/get-image/${p._id}`}
                       className="card-img-top"
-                      loading="lazy"
                       alt={p.name}
                     />
 

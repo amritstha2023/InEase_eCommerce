@@ -3,6 +3,7 @@ import Layout from "../components/layout/Layout";
 import { useCart } from "../context/cart";
 import { useAuth } from "../context/auth";
 import { useNavigate } from "react-router-dom";
+import KhaltiConfig from "../Khalti/KhaltiConfig";
 import { AiFillWarning } from "react-icons/ai";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -115,12 +116,13 @@ const CartPage = () => {
                       </button>
 
                       <div className="mt-2">
-                        <button
-                          className="btn btn-success"
-                          onClick={() => navigate("/payment")}
-                        >
-                          Make Payment
-                        </button>
+                      <button
+                        className="btn btn-success"
+                        onClick={() => {
+                          KhaltiConfig(1, 200, 'product_name');
+                          navigate("/payment");
+                   }}>Make Payment</button>
+
                       </div>
                     </div>
                   </>

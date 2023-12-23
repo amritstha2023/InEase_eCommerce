@@ -12,15 +12,18 @@ const Register = () => {
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [answer, setAnswer] = useState("");
+  const [role, setRole]=useState(0);
   const navigate = useNavigate();
+
+
 
   // form function
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        `${process.env.REACT_APP_API}/api/v1/auth/register`,
-        { name, email, password, phone, address, answer }
+        `http://localhost:8080/api/v1/auth/register`,
+        { name, email, password, phone, address, answer, role }
       );
 
       if (res.data.success) {
@@ -31,7 +34,7 @@ const Register = () => {
       }
     } catch (error) {
       console.log(error);
-      toast.error("Something went wrong..");
+      // toast.error("Something went wrong..");
     }
     // console.log(name, email, password, phone, address);
     toast.success("Register Successfully");
@@ -106,6 +109,17 @@ const Register = () => {
               className="form-control"
               id="exampleInputEmail1"
               placeholder="Enter Your Favourite Sports."
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <input
+              type="text"
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+              className="form-control"
+              id="exampleInputEmail1"
+              placeholder="Enter Your Role."
               required
             />
           </div>

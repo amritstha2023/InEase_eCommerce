@@ -1,13 +1,15 @@
 import mongoose from "mongoose";
-import colors from "colors";
 
-const connectDB = async () => {
+const db = async (DATABASE_URL) => {
   try {
-    const conn = await mongoose.connect(process.env.MONGO_URL);
-    console.log(`Connected to MongoDB database ${conn.connection.host}`.bgGreen);
+    const DB_OPTIONS = {
+      dbName: "InEase",
+    };
+    await mongoose.connect(DATABASE_URL, DB_OPTIONS);
+    console.log("database connected");
   } catch (error) {
-    console.log(`Error in MongoDB ${error}`.bgCyan.white);
+    console.log(error);
   }
 };
 
-export default connectDB;
+export default db;
