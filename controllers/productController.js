@@ -2,6 +2,8 @@ import productModel from "../models/productModel.js";
 import categoryModel from "../models/categoryModel.js";
 import fs from "fs";
 import slugify from "slugify";
+import mongoose from "mongoose";
+import orderModel from "../models/orderModel.js";
 
 export const createProductController = async (req, res) => {
   try {
@@ -313,4 +315,62 @@ export const productCategoryController = async (req, res) => {
       message: "Error While Getting products",
     });
   }
+
+};
+
+export const filter = async (req,res) => {
+ 
+   try {
+    const userId=req.params.userId;
+  const mid = new mongoose.Types.ObjectId(userId);
+
+console.log("some"+userId);
+  await orderModel
+    .find({ buyer: mid }, { products: 1 })
+    .then(async (docs) => {
+      let productIds = [];
+      docs?.forEach((doc) => {
+        productIds.push(...doc?.products);
+      });
+
+      let proRate = {};
+      productIds.forEach((item) => {
+        proRate[item] = (proRate[item] || 0) + 1;
+      });
+
+      const uniqueProducts = [
+        ...new Set(productIds.map((id) => id.toString())),
+      ];
+
+      await productModel
+        .find({ _id: { $in: uniqueProducts } }, { category: 1 })
+        .then(async (prods) => {
+          let categoryProd = {};
+          prods?.forEach((item) => {
+            categoryProd[item.category] =
+              (categoryProd[item.category] || 0) + proRate[item.id];
+          });
+
+          const keyValueArray = Object.entries(categoryProd);
+          const sortedArray = keyValueArray.sort((a, b) => b[1] - a[1]);
+          const sortedCategory = sortedArray.map((pair) => pair[0]);
+
+          console.log(
+            "Sorted categoriess Id by number of orders :",
+            sortedCategory
+          );
+          
+      const products=    await productModel
+            .find({ category: { $in: sortedCategory } });
+            res.json(products);
+           
+        });
+    })
+   } catch (error) {
+    res.status(400).send({
+      success: false,
+      error,
+      message: "Error While Getting products",
+    });
+   }
 };

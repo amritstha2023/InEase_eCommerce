@@ -42,7 +42,34 @@ const CartPage = () => {
       console.log(error);
     }
   };
-
+  const postorders = async (payment) => {
+    try {
+      const res = await fetch("http://localhost:8080/api/v1/auth/postorder", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          products: cart,
+          buyer: auth["user"]["_id"],
+          status: "Not Process",
+          payment: payment,
+          totalprice: totalPrice(),
+        }),
+      });
+      console.log(res.body);
+      if (res.status === 200) {
+        toast.success("Order sucessfully");
+        
+        navigate("/dashboard/user/orders");
+      } else {
+        toast.error("Something went wrong");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <Layout>
       <div className=" cart-page text-dark">
@@ -119,8 +146,10 @@ const CartPage = () => {
                       <button
                         className="btn btn-success"
                         onClick={() => {
+                          postorders("Success");
                           KhaltiConfig(1, 200, 'product_name');
                           navigate("/payment");
+                         
                    }}>Make Payment</button>
 
                       </div>

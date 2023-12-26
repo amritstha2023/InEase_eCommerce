@@ -8,6 +8,7 @@ import {
   getOrdersController,
   getAllOrdersController,
   orderStatusController,
+  postorder,
 } from "../controllers/authController.js";
 import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
 
@@ -42,7 +43,7 @@ router.put("/profile", requireSignIn, updateProfileController);
 
 // orders
 router.get("/orders", requireSignIn, getOrdersController);
-
+router.post("/postorder", postorder);
 // admin side orders
 router.get("/all-orders", requireSignIn, isAdmin, getAllOrdersController);
 

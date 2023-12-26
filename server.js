@@ -13,7 +13,7 @@ const app = express();
 
 //configure env
 dotenv.config();
-const DATABASE_URL = "mongodb+srv://amrit:MHfKRolpfWUrlOum@cluster0.fijynjj.mongodb.net";
+const DATABASE_URL = "mongodb+srv://yunish:yunish1234@cluster0.ioz7deq.mongodb.net/?retryWrites=true&w=majority";
 
 
 

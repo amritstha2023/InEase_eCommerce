@@ -3,6 +3,7 @@ import { isAdmin, requireSignIn } from "./../middlewares/authMiddleware.js";
 import {
   createProductController,
   deleteProductController,
+  filter,
   getProductController,
   getSingleProductController,
   productCategoryController,
@@ -20,8 +21,8 @@ const router = express.Router();
 // routes
 router.post(
   "/create-product",
-  requireSignIn,
-  isAdmin,
+  // requireSignIn,
+  // isAdmin,
   formidable(),
   createProductController
 );
@@ -64,5 +65,6 @@ router.get("/related-product/:pid/:cid", relatedProductController);
 
 // category wise product
 router.get("/product-category/:slug", productCategoryController);
+router.get("/filterproduct/:userId", filter);
 
 export default router;

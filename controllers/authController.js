@@ -269,3 +269,27 @@ export const orderStatusController = async (req, res) => {
     });
   }
 };
+export const postorder = async (req, res) => {
+  try {
+    const { products, buyer, status, payment, totalprice } = req.body;
+    const order = new orderModel({
+      products,
+      buyer,
+      status,
+      payment,
+      totalprice,
+    });
+    await order.save();
+    res.status(200).send({
+      success: true,
+      message: "Order updated successfully..",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error WHile Geting Orders",
+      error,
+    });
+  }
+};
